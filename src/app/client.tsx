@@ -8,6 +8,8 @@ type Props={
 
 export default function BallotClientPage ({ ballots }:Props) {
   const [votes, setVotes] = useState(() => new Map<Ballot['title'], Nominee>())
+  const isComplete = votes.size === ballots.length
+  // const isComplete = ballots.every((ballot) => votes.has(ballot.title))
   function handleVote (ballotTitle:Ballot['title'], nominee:Nominee) {
     const draft = structuredClone(votes)
     draft.set(ballotTitle, nominee)
@@ -33,7 +35,7 @@ export default function BallotClientPage ({ ballots }:Props) {
           </ul>
         </article>
       ))}
-      <button type='submit' onClick={handleSubmit}>Submit Votes</button>
+      <button disabled={!isComplete} type='submit' onClick={handleSubmit} style={{ width: '110%', padding: '10px', marginLeft: '-23px', borderRadius: '10px', marginTop: '10px' }}>Submit Votes</button>
     </section>
   )
 }
