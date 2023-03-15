@@ -1,5 +1,8 @@
-export default function Home () {
+import api from '@/api'
+
+export default async function Home () {
+  const ballots = await api.ballot.list()
   return (
-    <main>Holis</main>
+    <main><pre>{JSON.stringify(ballots, null, 2)}</pre></main>
   )
 }
