@@ -1,6 +1,7 @@
 :root{
   color-scheme: dark;
-  font-family: Roboto,sans-serif;
+  /* font-family: Roboto,sans-serif; */
+  font-family: var(--font-roboto), sans-serif;
 }
 * {
   box-sizing: border-box;
