@@ -37,7 +37,7 @@ export default function BallotClientPage ({ ballots }:Props) {
           </ul>
         </article>
       ))}
-      <button disabled={!isComplete} type='submit' onClick={handleSubmit} style={{ width: '110%', padding: '10px', marginLeft: '-23px', borderRadius: '10px', marginTop: '10px' }}>Submit Votes</button>
+      <button disabled={!isComplete} type='submit' onClick={handleSubmit} style={{ width: '105%', padding: '10px', marginLeft: '-23px', borderRadius: '10px', marginTop: '10px' }}>Submit Votes</button>
     </section>
   )
 }
