@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 import { Ballot, Nominee } from '@/types'
 import { useMemo, useState } from 'react'
@@ -60,19 +61,21 @@ export default function BallotClientPage ({ ballots }:Props) {
                 }}
               >
                 <span style={{ textAlign: 'center' }}>{nominee.title}</span>
-                <span style={{
-                  width: 96,
-                  height: 96,
-                  borderRadius: 96,
-                  border: '2px solid black',
-                  padding: '2px',
-                  display: 'flex',
-                  textAlign: 'center',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}
-                >Nominee Image
-                </span>
+                <img
+                  src={nominee.photoUrL}
+                  style={{
+                    width: 96,
+                    height: 96,
+                    borderRadius: 96,
+                    border: '2px solid black',
+                    padding: '2px',
+                    display: 'flex',
+                    textAlign: 'center',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                  alt={nominee.title}
+                />
                 <button style={{ width: '100%', padding: '6px 0' }} onClick={() => handleVote(ballot.title, nominee)}>Vote</button>
               </li>
             ))}
@@ -81,5 +84,6 @@ export default function BallotClientPage ({ ballots }:Props) {
       ))}
       <button disabled={!isComplete} type='submit' onClick={handleSubmit} style={{ width: '105%', padding: '10px', marginLeft: '-23px', borderRadius: '10px', marginTop: '10px' }}>Submit Votes</button>
     </section>
+
   )
 }
