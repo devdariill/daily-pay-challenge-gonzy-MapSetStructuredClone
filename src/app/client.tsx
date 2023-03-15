@@ -14,6 +14,9 @@ export default function BallotClientPage ({ ballots }:Props) {
     setVotes(draft)
   }
   console.log(votes.size)
+  function handleSubmit () {
+    alert(Array.from(votes.entries()).map(([ballotTitle, nominee]) => `${ballotTitle.padEnd(25, ' ')}: ${nominee.title}`).join('\n'))
+  }
   return (
     <section>
       {/* <pre>{JSON.stringify(ballots, null, 2)}</pre> */}
