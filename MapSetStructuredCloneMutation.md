@@ -1,11 +1,6 @@
-'use client'
-import { Ballot, Nominee } from '@/types'
-import { useState } from 'react'
+## new Map structuredClone
 
-type Props={
-  ballots:Ballot[]
-}
-
+```js
 export default function BallotClientPage ({ ballots }:Props) {
   const [votes, setVotes] = useState(() => new Map<Ballot['id'], Nominee>())
   function handleVote (ballotId:Ballot['id'], nominee:Nominee) {
@@ -33,3 +28,4 @@ export default function BallotClientPage ({ ballots }:Props) {
     </section>
   )
 }
+```
