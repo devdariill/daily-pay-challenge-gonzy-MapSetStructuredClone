@@ -8,6 +8,9 @@ type Props={
 
 export default function BallotClientPage ({ ballots }:Props) {
   const [votes, setVotes] = useState(() => new Map<Ballot['id'], Nominee>())
+  function handleVote (ballotId:Ballot['id'], nominee:Nominee) {
+
+  }
   return (
     <section>
       {/* <pre>{JSON.stringify(ballots, null, 2)}</pre> */}
@@ -16,7 +19,10 @@ export default function BallotClientPage ({ ballots }:Props) {
           <h3 style={{ marginLeft: '-22px' }}>{ballot.id}</h3>
           <ul>
             {ballot.items.map(nominee => (
-              <li key={nominee.id}>{nominee.title}</li>
+              <li key={nominee.id}>
+                <span>{nominee.title}</span>
+                <button onClick={() => handleVote(ballot.id, nominee)}>Vote</button>
+              </li>
             ))}
           </ul>
         </article>
