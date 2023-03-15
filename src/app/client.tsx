@@ -22,16 +22,58 @@ export default function BallotClientPage ({ ballots }:Props) {
     alert(Array.from(votes.entries()).map(([ballotTitle, nominee]) => `${ballotTitle.padEnd(25, ' ')}: ${nominee.title}`).join('\n'))
   }
   return (
-    <section>
+    <section style={{
+      marginTop: '20px',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '40px'
+    }}
+    >
       {/* <pre>{JSON.stringify(ballots, null, 2)}</pre> */}
       {ballots.map((ballot) => (
-        <article key={ballot.title}>
+        <article
+          key={ballot.title} style={{
+            alignSelf: 'stretch'
+          }}
+        >
           <h3 style={{ marginLeft: '-22px' }}>{ballot.title}</h3>
-          <ul>
+          <ul style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))',
+            gap: '20px'
+          }}
+          >
             {ballot.items.map(nominee => (
-              <li key={nominee.id} style={{ border: votes.get(ballot.title)?.id === nominee.id ? '1px solid red' : 'none' }}>
-                <span>{nominee.title}</span>
-                <button onClick={() => handleVote(ballot.title, nominee)}>Vote</button>
+              <li
+                key={nominee.id}
+                style={{
+                  border: votes.get(ballot.title)?.id === nominee.id ? '2px solid gold' : 'none',
+                  backgroundColor: 'gray',
+                  padding: '10px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'black',
+                  borderRadius: '10px',
+                  gap: '20px'
+                }}
+              >
+                <span style={{ textAlign: 'center' }}>{nominee.title}</span>
+                <span style={{
+                  width: 96,
+                  height: 96,
+                  borderRadius: 96,
+                  border: '2px solid black',
+                  padding: '2px',
+                  display: 'flex',
+                  textAlign: 'center',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+                >Nominee Image
+                </span>
+                <button style={{ width: '100%', padding: '6px 0' }} onClick={() => handleVote(ballot.title, nominee)}>Vote</button>
               </li>
             ))}
           </ul>
