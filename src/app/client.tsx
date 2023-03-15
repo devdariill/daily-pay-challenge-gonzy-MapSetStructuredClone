@@ -22,7 +22,7 @@ export default function BallotClientPage ({ ballots }:Props) {
           <h3 style={{ marginLeft: '-22px' }}>{ballot.id}</h3>
           <ul>
             {ballot.items.map(nominee => (
-              <li key={nominee.id}>
+              <li key={nominee.id} style={{ border: votes.get(ballot.id)?.id === nominee.id ? '1px solid red' : 'none' }}>
                 <span>{nominee.title}</span>
                 <button onClick={() => handleVote(ballot.id, nominee)}>Vote</button>
               </li>
