@@ -7,10 +7,10 @@ type Props={
 }
 
 export default function BallotClientPage ({ ballots }:Props) {
-  const [votes, setVotes] = useState(() => new Map<Ballot['id'], Nominee>())
-  function handleVote (ballotId:Ballot['id'], nominee:Nominee) {
+  const [votes, setVotes] = useState(() => new Map<Ballot['title'], Nominee>())
+  function handleVote (ballotTitle:Ballot['title'], nominee:Nominee) {
     const draft = structuredClone(votes)
-    draft.set(ballotId, nominee)
+    draft.set(ballotTitle, nominee)
     setVotes(draft)
   }
   console.log(votes.size)
@@ -18,18 +18,19 @@ export default function BallotClientPage ({ ballots }:Props) {
     <section>
       {/* <pre>{JSON.stringify(ballots, null, 2)}</pre> */}
       {ballots.map((ballot) => (
-        <article key={ballot.id}>
-          <h3 style={{ marginLeft: '-22px' }}>{ballot.id}</h3>
+        <article key={ballot.title}>
+          <h3 style={{ marginLeft: '-22px' }}>{ballot.title}</h3>
           <ul>
             {ballot.items.map(nominee => (
-              <li key={nominee.id} style={{ border: votes.get(ballot.id)?.id === nominee.id ? '1px solid red' : 'none' }}>
+              <li key={nominee.id} style={{ border: votes.get(ballot.title)?.id === nominee.id ? '1px solid red' : 'none' }}>
                 <span>{nominee.title}</span>
-                <button onClick={() => handleVote(ballot.id, nominee)}>Vote</button>
+                <button onClick={() => handleVote(ballot.title, nominee)}>Vote</button>
               </li>
             ))}
           </ul>
         </article>
       ))}
+      <button type='submit' onClick={handleSubmit}>Submit Votes</button>
     </section>
   )
 }
