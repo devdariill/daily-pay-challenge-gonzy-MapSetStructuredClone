@@ -1,6 +1,6 @@
 'use client'
 import { Ballot, Nominee } from '@/types'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 
 type Props={
   ballots:Ballot[]
@@ -8,7 +8,9 @@ type Props={
 
 export default function BallotClientPage ({ ballots }:Props) {
   const [votes, setVotes] = useState(() => new Map<Ballot['title'], Nominee>())
-  const isComplete = votes.size === ballots.length
+  const isComplete = useMemo(() => votes.size === ballots.length, [votes.size, ballots.length])
+  // const isComplete = useMemo(() => votes.size === ballots.length, [votes, ballots])
+  // const isComplete = votes.size === ballots.length
   // const isComplete = ballots.every((ballot) => votes.has(ballot.title))
   function handleVote (ballotTitle:Ballot['title'], nominee:Nominee) {
     const draft = structuredClone(votes)
